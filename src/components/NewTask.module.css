@@ -1,14 +1,11 @@
 .inputContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 90px;
+
   gap: 0.5rem;
-  margin-top: -1.75rem;
 }
 
 .inputContainer input {
-  width: 39.875rem;
-  height: 3.375rem;
   padding: 1rem;
   background-color: var(--gray-500);
   border-radius: 8px;
@@ -35,6 +32,7 @@
 
   display: flex;
   align-items: center;
+  justify-content: center;
 
   padding: 1rem;
   border-radius: 8px;
@@ -53,4 +51,12 @@
 
 .inputContainer button[type="submit"] svg {
   margin-left: 0.5rem;
+}
+
+
+
+@media(max-width:374px) {
+  .inputContainer {
+    grid-template-columns: 1fr;
+  }
 }
