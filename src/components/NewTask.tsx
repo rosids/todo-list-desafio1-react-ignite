@@ -1,5 +1,7 @@
 import { PlusCircle } from 'phosphor-react';
-import { Task } from './Task';
+
+import { TaskEmpty } from './TaskEmpty';
+import { TaskHeader } from './TaskHeader';
 
 import styles from './NewTask.module.css';
 
@@ -15,7 +17,10 @@ export function NewTask() {
       </form>
 
       <div className={styles.taskList}>
-        <Task />
+        <div className={styles.task}>
+          <TaskHeader />
+          <TaskEmpty />
+        </div>
       </div>
     </>
   )
