@@ -51,6 +51,9 @@ export function NewTask() {
   }
 
   const isTaskListEmpty = tasks.length === 0;
+  const totalTasksCreated = tasks.length;
+  const totalTasksCompleted = tasks.reduce((
+    (previousValue, currentValue) => currentValue.completed ? previousValue+= 1 : previousValue), 0);
 
   const isNewTaskListEmpty = newTaskText.length === 0;
 
@@ -72,7 +75,7 @@ export function NewTask() {
 
       <div className={styles.taskList}>
         <div className={styles.task}>
-          <TaskHeader />
+          <TaskHeader totalTasksCreated={totalTasksCreated} totalTasksCompleted={totalTasksCompleted} />
           {isTaskListEmpty ? (
             <TaskEmpty />
           ) : (
