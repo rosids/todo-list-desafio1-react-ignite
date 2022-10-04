@@ -1,8 +1,10 @@
 :root {
   --purple: #8284FA;
   --purple-dark: #5E60CE;
+
   --blue: #4EA8DE;
   --blue-dark: #1E6F9F;
+  --blue-dark-opacity: rgba(30, 111, 159, 0.1);
 
   --danger: #E25858;
 

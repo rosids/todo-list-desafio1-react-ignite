@@ -1,4 +1,5 @@
-import { Trash } from 'phosphor-react';
+import * as Checkbox from '@radix-ui/react-checkbox';
+import { Check, Trash } from 'phosphor-react';
 
 import styles from './Task.module.css';
 
@@ -14,11 +15,17 @@ export function Task({ id, content, onDeleteTask }: TaskProps) {
   }
 
   return (
-    <div className={styles.taskList}>
-      <input type="checkbox" />
+    <div className={styles.task}>
+      <Checkbox.Root
+        className={styles.unchecked}
+      >
+        <Checkbox.Indicator>
+          <Check size={12} weight="bold" />
+        </Checkbox.Indicator>
+      </Checkbox.Root>
       <p>{content}</p>
-      <button onClick={handleDeleteTask}>
-        <Trash size={24} />
+      <button className={styles.delete} onClick={handleDeleteTask}>
+        <Trash size={18} />
       </button>
     </div>
   );
