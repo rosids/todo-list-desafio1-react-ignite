@@ -3,24 +3,31 @@ import { Check, Trash } from 'phosphor-react';
 
 import styles from './Task.module.css';
 
-import { Task as TaskP } from './NewTask';
+import { Task as TaskProp } from './NewTask';
 
-interface TaskProps extends TaskP {
+interface TaskProps extends TaskProp {
   onDeleteTask: (task: number) => void;
+  onCompletedTask: (id: number, checked: boolean) => void;
 }
 
-export function Task({ id, content, onDeleteTask }: TaskProps) {
+export function Task({ id, content, completed, onDeleteTask, onCompletedTask }: TaskProps) {
   function handleDeleteTask () {
     onDeleteTask(id);
   }
 
+  function handleTaskCompleteChange(checked: boolean) {
+    onCompletedTask(id, checked === true ? true : false);
+  }
+
   return (
-    <div className={styles.task}>
+    <div className={completed ? styles.taskCompleted : styles.task}>
       <Checkbox.Root
-        className={styles.unchecked}
+        className={completed ? styles.checked : styles.unchecked}
+        checked={completed}
+        onCheckedChange={handleTaskCompleteChange}
       >
         <Checkbox.Indicator>
-          <Check size={12} weight="bold" />
+          <Check weight="bold" />
         </Checkbox.Indicator>
       </Checkbox.Root>
       <p>{content}</p>

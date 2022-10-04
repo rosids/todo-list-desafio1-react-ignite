@@ -10,6 +10,7 @@ import styles from './NewTask.module.css';
 export interface Task {
   id: number
   content: string;
+  completed: boolean;
 }
 
 export function NewTask() {
@@ -20,7 +21,7 @@ export function NewTask() {
     event.preventDefault();
 
     const id = (tasks.at(-1)?.id || tasks.length ) + 1;
-    setTasks((state) => [...state, { id, content: newTaskText } ]);
+    setTasks((state) => [...state, { id, content: newTaskText, completed: false } ]);
 
     setNewTaskText('');
   }
@@ -40,6 +41,15 @@ export function NewTask() {
     setTasks(tasksWithoutDeleteOne);
   }
 
+  function completedTask(taskId: number, checked: boolean) {
+    const taskCompleted = tasks.map(task => {
+      if(task.id === taskId) return { ...task, completed: checked }
+      return task;
+    });
+
+    setTasks(taskCompleted);
+  }
+
   const isTaskListEmpty = tasks.length === 0;
 
   const isNewTaskListEmpty = newTaskText.length === 0;
@@ -56,7 +66,7 @@ export function NewTask() {
         />
         <button type="submit" disabled={isNewTaskListEmpty}>
           Criar
-          <PlusCircle size={16} />
+          <PlusCircle size={18} />
         </button>
       </form>
 
@@ -71,6 +81,8 @@ export function NewTask() {
                 key={task.id}
                 id={task.id}
                 content={task.content}
+                completed={task.completed}
+                onCompletedTask={completedTask}
                 onDeleteTask={deleteTask}
               />
             ))

@@ -1,7 +1,7 @@
 .wrapper {
   max-width: 46rem;
 
-  margin: -1.75rem auto;
+  margin: -1.75rem auto 17.625rem;
 }
 
 @media(max-width:768px) {
